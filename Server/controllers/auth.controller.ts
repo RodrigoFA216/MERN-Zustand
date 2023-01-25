@@ -30,6 +30,8 @@ export const loginHandler=(req:Request, res: Response)=>{
     })
 }
 
-export const profileHandler=()=>{
-    
+export const profileHandler=(req:Request, res:Response)=>{
+    return res.json({
+
+    })
 }
