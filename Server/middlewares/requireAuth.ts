@@ -3,6 +3,7 @@ import {
     Response,
     NextFunction
 } from 'express'
+import jwt from 'jsonwebtoken'
 
 export const requireAuth=(req:Request, res:Response, next:NextFunction)=>{
     const authHeader=req.headers.authorization
@@ -10,6 +11,30 @@ export const requireAuth=(req:Request, res:Response, next:NextFunction)=>{
         message: "Unauthorized"
     })
     // El string se divide en "Bearer asdkjahda"
-    
-    next()
+    //necesitamos dividirlo cuando se encuentre la primer incidencia de ' '
+    //pasa de ser "Bearer asdkjahda"
+    //a ser ["Bearer", "asdkjahda"] por tanto tomamos el indice uno
+    const token=authHeader.split(' ')[1]
+    const key=authHeader.split(' ')[0]
+    if (key==='Bearer') {
+        if(!token) return res.status(401).json({
+            message: "Unauthorized"
+        })
+        else{
+            //usamos el metodo de jsonwebtokens llamado verificación
+            //requiere la cosa a verificar, el secreto con el que se encriptó 
+            //va a regresar un erro o datos que tiene dentro ese token
+            jwt.verify(token, 'secret', (err, user)=>{
+                if (err) return res.status(401).json({
+                    message: "Unauthorized"
+                })
+                console.log(user);
+                next()
+            })
+        }
+    }else{
+        return res.status(401).json({
+            message: "Unauthorized"
+        })
+    }
 }
