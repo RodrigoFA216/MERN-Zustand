@@ -22,3 +22,14 @@ run de server on http://localhost:3000/
     - @types/morgan
     - @types/cors
 - ts-node-dev
+
+# Backend engine
+
+- Send fetch post with a JSON body to http://localhost:3000/login, this will make a token
+
+- Send a fetch get to http://localhost:3000/profile with a headers:
+
+Content-Type application/json
+Authorization Barer 'token'
+
+replace 'token' with your own token
