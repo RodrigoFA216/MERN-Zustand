@@ -33,3 +33,5 @@ Content-Type application/json
 Authorization Barer 'token'
 
 replace 'token' with your own token
+
+//npx tsc --init

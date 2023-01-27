@@ -29,6 +29,9 @@ export const requireAuth=(req:Request, res:Response, next:NextFunction)=>{
                     message: "Unauthorized"
                 })
                 console.log(user);
+                // req.user=user para js, en el caso de ts se usa el archivo de server/types/express.d.ts
+                //y aparte se hacen modificaciones en tsconfig que es básicamente cómo tiene que funcionar el compilador de ts
+                req.user=user
                 next()
             })
         }
