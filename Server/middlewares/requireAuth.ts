@@ -23,7 +23,7 @@ export const requireAuth=(req:Request, res:Response, next:NextFunction)=>{
         else{
             //usamos el metodo de jsonwebtokens llamado verificación
             //requiere la cosa a verificar, el secreto con el que se encriptó 
-            //va a regresar un erro o datos que tiene dentro ese token
+            //va a regresar un erro o los datos que tiene dentro ese token
             jwt.verify(token, 'secret', (err, user)=>{
                 if (err) return res.status(401).json({
                     message: "Unauthorized"
