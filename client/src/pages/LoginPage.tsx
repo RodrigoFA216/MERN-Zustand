@@ -1,8 +1,10 @@
 import React from 'react'
 import {loginRequest} from '../api/auth'
+import {useAuthStore} from '../store/auth'
 
 function LoginPage() {
-const handleSubmit=async(e:React.FormEvent<HTMLFormElement>)=>{//esto recibe datos desde un form html
+    const setToken=useAuthStore(state=>state.setToken)
+    const handleSubmit=async(e:React.FormEvent<HTMLFormElement>)=>{//esto recibe datos desde un form html
         e.preventDefault()//no falles pls xd
         const email=(e.currentTarget.elements[0] as HTMLInputElement).value
         const pass=(e.currentTarget.elements[1] as HTMLInputElement).value
