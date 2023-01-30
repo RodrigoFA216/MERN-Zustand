@@ -7,3 +7,7 @@ export const loginRequest= async(email: string, pass:string)=>{
         pass
     })
 }
+
+export const profileRequest = async ()=>{
+    return await axios.get('http://localhost:3000/profile')
+}

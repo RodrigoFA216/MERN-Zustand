@@ -1,5 +1,5 @@
 import React from 'react'
-import {loginRequest} from '../api/auth'
+import {loginRequest, profileRequest} from '../api/auth'
 import {useAuthStore} from '../store/auth'
 
 function LoginPage() {
@@ -10,6 +10,9 @@ function LoginPage() {
         const pass=(e.currentTarget.elements[1] as HTMLInputElement).value
         const resLogin=await loginRequest(email,pass)
         console.log(resLogin)
+        setToken(resLogin.data.token)
+        const resProfile=await profileRequest()
+        console.log(resProfile);
     }
     return (
         <form onSubmit={handleSubmit}>
